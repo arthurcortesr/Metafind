@@ -5,4 +5,4 @@ Esse repositório também possui um arquivo com as [melhorias](https://github.co
 
 Dois argumentos devem ser passados, o alvo a ser buscado e a extensão do arquivo.
 
-./metafind.sh <alvo> <extensão>
+./metafind.sh  <alvo> <extensão>
