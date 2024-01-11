@@ -174,3 +174,24 @@ Agora, o usuário pode fornecer o diretório de destino usando a opção -d. Se 
 ```bash
 ./metafind.sh -h example.com -t pdf -d /caminho/para/diretorio
 ```
+
+<br>
+
+---
+
+<br>
+
+## **Suporte a Proxy**
+
+O suporte a proxy é útil quando o script precisa acessar a internet para baixar arquivos, mas a conexão precisa passar por um servidor proxy. Aqui estão alguns passos para implementar o suporte a proxy:
+
+Opção de Linha de Comando: Adicione opções de linha de comando para permitir que os usuários forneçam informações de proxy durante a execução do script. Por exemplo:
+```bash
+./metafind.sh <host> <tipo_de_arquivo> --proxy http://proxy.example.com:8080
+```
+
+Variáveis de Ambiente: Permita que os usuários configurem variáveis de ambiente relacionadas ao proxy, como HTTP_PROXY e HTTPS_PROXY. O script pode então usar essas variáveis para rotear o tráfego através do proxy.
+
+Leitura de Configuração Externa: Permita que os usuários forneçam um arquivo de configuração externo que contenha informações de proxy. Isso pode ser mais conveniente para configurações persistentes.
+
+Essa funcionalidade é útil em ambientes corporativos ou redes restritas, onde o acesso à internet é feito por meio de um servidor proxy. Permitir que os usuários configurem as informações do proxy ajuda o script a funcionar em diferentes ambientes de rede.
