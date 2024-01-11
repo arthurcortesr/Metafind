@@ -3,6 +3,12 @@ Também será escrito os códigos e/ou partes da melhoria.
 
 As melhorias aqui foram sugeridas pelo chat GPT.
 
+<br>
+
+---
+
+<br>
+
 ## **Paralelização para Download**
 
 Quando você está fazendo o download de vários arquivos, fazer isso em paralelo pode acelerar significativamente o processo. Isso é especialmente útil quando você está lidando com uma grande quantidade de URLs para baixar. Ferramentas como xargs ou parallel podem ajudar nesse caso.
