@@ -13,4 +13,4 @@ Dois argumentos devem ser passados, o alvo a ser buscado e a extensão do arquiv
 
 ## **Forma de uso**
 
-./metafind.sh <alvo> <extensão>
+./metafind.sh <<alvo> <<extensão>>
