@@ -3,6 +3,8 @@
 # Verifica se o número de argumentos é válido
 if [ "$#" -ne 2 ]; then
     echo "----------------------------------------------------------------"
+    echo "Pk's Academy - METAFIND"
+    echo "----------------------------------------------------------------"
     echo "Suportado: pdf, doc, docx, xls, xlsx, ppt, pptx"
     echo "----------------------------------------------------------------"
     echo "Modo de uso: ./metafind.sh <alvo> <tipo_de_arquivo>"
