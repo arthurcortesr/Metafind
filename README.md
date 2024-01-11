@@ -11,6 +11,6 @@ Dois argumentos devem ser passados, o alvo a ser buscado e a extensão do arquiv
 
 <br>
 
-## **Forma de uso**
+## Forma de uso
 
 ./metafind <alvo> <extensão>
