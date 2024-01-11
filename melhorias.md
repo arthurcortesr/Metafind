@@ -24,8 +24,11 @@ cat "$URL_FILE" | xargs -n 1 -P 4 -I {} bash -c 'process_url {}'
 ```
 Neste exemplo, -P 4 indica que até 4 downloads podem ocorrer simultaneamente.
 
+<br>
 
+---
 
+<br>
 
 ## **Opções de Linha de Comando**
 
@@ -46,8 +49,11 @@ shift $((OPTIND-1))
 
 Agora, ao executar o script, você pode passar opções como -h <host> e -d <tipo_de_arquivo>.
 
+<br>
 
+---
 
+<br>
 
 ## **Logging**
 
@@ -66,8 +72,11 @@ exec 1>>"$LOG_FILE" 2>&1
 
 Neste exemplo, as mensagens de saída padrão (stdout) e erros (stderr) são redirecionadas para o arquivo de log.
 
+<br>
 
+---
 
+<br>
 
 ## **Configurações Externas**
 
