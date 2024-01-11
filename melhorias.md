@@ -100,3 +100,77 @@ source config.sh
 ```
 
 Isso permite que você ajuste as configurações sem mexer diretamente no script.
+
+<br>
+
+---
+
+<br>
+
+## **Suporte a Mais Tipos de Arquivos**
+
+Para adicionar suporte a mais tipos de arquivos, você pode modificar a verificação de tipo de arquivo e o Google Dork para permitir que o usuário especifique tipos de arquivo adicionais como argumentos de linha de comando. Aqui está um exemplo de como você poderia abordar isso:
+
+```bash
+#!/bin/bash
+
+# ...
+
+# Verifica se o tipo de arquivo é suportado
+TIPOS_ARQUIVOS=("pdf" "doc" "docx" "xls" "xlsx" "ppt" "pptx")
+
+if [[ ! " ${TIPOS_ARQUIVOS[@]} " =~ " ${FILE_TYPE} " ]]; then
+    echo "Tipo de arquivo não suportado. Apenas suportado: ${TIPOS_ARQUIVOS[*]}"
+    exit 1
+fi
+
+# ...
+
+# Define o termo de busca usando o Google Dork
+SEARCH_TERM="site:$HOST+ext:$FILE_TYPE"
+```
+
+Com essa modificação, você pode adicionar mais tipos de arquivo ao array TIPOS_ARQUIVOS conforme necessário.
+
+<br>
+
+---
+
+<br>
+
+## **Opção para Especificar o Diretório de Download**
+
+Para permitir que o usuário especifique o diretório de destino para os downloads, você pode adicionar uma opção de linha de comando usando getopts. Aqui está um exemplo:
+
+```bash
+#!/bin/bash
+
+# ...
+
+# Obtém o host e o tipo de arquivo do argumento
+HOST=""
+FILE_TYPE=""
+DEST_DIR="."  # Diretório padrão é o diretório atual
+
+while getopts ":h:t:d:" opt; do
+  case $opt in
+    h) HOST="$OPTARG";;
+    t) FILE_TYPE="$OPTARG";;
+    d) DEST_DIR="$OPTARG";;
+    \?) echo "Uso: $0 -h <host> -t <tipo_de_arquivo> -d <diretorio_de_destino>"; exit 1;;
+  esac
+done
+
+# ...
+
+# Realiza a pesquisa usando o Google Dork e extrai os URLs
+lynx --dump "https://google.com/search?&q=site:$HOST+ext:$FILE_TYPE" | grep ".$FILE_TYPE" | cut -d "=" -f2 | egrep -v "site|google" | sed 's/...$//' > "$URL_FILE"
+
+# ...
+```
+
+Agora, o usuário pode fornecer o diretório de destino usando a opção -d. Se não for especificado, o diretório padrão será o diretório atual. Exemplo de uso:
+
+```bash
+./metafind.sh -h example.com -t pdf -d /caminho/para/diretorio
+```
