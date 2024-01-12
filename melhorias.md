@@ -1,7 +1,6 @@
 Aqui irei deixar anotações de possíveis melhorias para o script que serão analisadas antes de serem de fato feitas as atualizações no scripts.
 Também será escrito os códigos e/ou partes da melhoria.
 
-As melhorias aqui foram sugeridas pelo chat GPT.
 
 <br>
 
