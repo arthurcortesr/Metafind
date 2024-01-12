@@ -3,6 +3,8 @@
 # Definindo códigos de cor ANSI
 COR_PKA='\e[38;5;197m'  # F5055C
 COR_META='\e[38;5;220m'  # FEB63E
+COR_VERDE='\e[92m' # 00FF00
+COR_VERMELHO='\e[38;5;196m'   # E10406
 RESET='\e[0m'  # Reset para as configurações padrão de cor
 
 
@@ -22,6 +24,7 @@ echo
 echo -e "${COR_PKA}Pk's Academy${RESET} - ${COR_META}METAFIND${RESET}"
 echo
 
+
 # Obtém o host e o tipo de arquivo do argumento
 HOST="$1"
 FILE_TYPE="$2"
@@ -32,7 +35,7 @@ TIPOS_ARQUIVOS=("pdf" "doc" "docx" "xls" "xlsx" "ppt" "pptx")
 
 # Verifica se o tipo de arquivo é suportado
 if [[ ! " ${TIPOS_ARQUIVOS[@]} " =~ " ${FILE_TYPE} " ]]; then
-    echo "Tipo de arquivo não suportado. Apenas suportado: pdf, doc, docx, xls, xlsx, ppt, pptx"
+    echo -E "${COR_VERMELHO}Tipo de arquivo não suportado. Apenas suportado: pdf, doc, docx, xls, xlsx, ppt, pptx${RESET}"
     exit 1
 fi
 
@@ -51,14 +54,19 @@ while IFS= read -r URL; do
 #Verifica se o download foi bem-sucedido
     if [ -e "$(basename "$URL")" ]; then
         # Analisa os metadados usando o Exiftool para arquivos suportados
-        echo "Metadados para $(basename "$URL"):"
+        echo -e "${COR_VERDE}Metadados para $(basename "$URL"):${RESET}"
         exiftool "$(basename "$URL")"
         echo "---------------------------------------"
         
         # Remove o arquivo após análise
         rm "$(basename "$URL")"
     else
-        echo "Erro ao baixar o arquivo: $URL"
+	echo "---------------------------------------"
+	echo
+        echo -e "${COR_VERMELHO}Erro ao baixar o arquivo: $URL${RESET}"
+	echo
+	echo "---------------------------------------"
+
     fi
 done < "$URL_FILE"
 
