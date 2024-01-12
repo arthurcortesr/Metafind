@@ -1,9 +1,15 @@
 #!/bin/bash
 
+# Definindo códigos de cor ANSI
+COR_PKA='\e[38;5;197m'  # F5055C
+COR_META='\e[38;5;220m'  # FEB63E
+RESET='\e[0m'  # Reset para as configurações padrão de cor
+
+
 # Verifica se o número de argumentos é válido
 if [ "$#" -ne 2 ]; then
     echo "----------------------------------------------------------------"
-    echo "Pk's Academy - METAFIND"
+    echo -e "${COR_PKA}Pk's Academy${RESET} - ${COR_META}METAFIND${RESET}"
     echo "----------------------------------------------------------------"
     echo "Suportado: pdf, doc, docx, xls, xlsx, ppt, pptx"
     echo "----------------------------------------------------------------"
@@ -11,6 +17,10 @@ if [ "$#" -ne 2 ]; then
     echo "----------------------------------------------------------------"
     exit 1
 fi
+
+echo
+echo -e "${COR_PKA}Pk's Academy${RESET} - ${COR_META}METAFIND${RESET}"
+echo
 
 # Obtém o host e o tipo de arquivo do argumento
 HOST="$1"
@@ -36,8 +46,9 @@ lynx --dump "https://google.com/search?&q=$SEARCH_TERM" | grep ".$FILE_TYPE" | c
 while IFS= read -r URL; do
     # Faz o download do arquivo para análise local usando wget com a opção -q (quiet)
     wget -q "$URL"
-    
-    # Verifica se o download foi bem-sucedido
+
+
+#Verifica se o download foi bem-sucedido
     if [ -e "$(basename "$URL")" ]; then
         # Analisa os metadados usando o Exiftool para arquivos suportados
         echo "Metadados para $(basename "$URL"):"
